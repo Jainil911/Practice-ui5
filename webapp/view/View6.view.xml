@@ -1,0 +1,136 @@
+<mvc:View
+	controllerName="project1.controller.View6"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+
+	<f:DynamicPage
+		headerExpanded="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Standard" level="H4"/>
+				</f:heading>
+				<f:actions>
+					<Button icon="sap-icon://simulate" text="Bulk Simulation" type="Emphasized" press="onBulkSimulation"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+				<VBox>
+
+					<form:SimpleForm
+						id="simForm"
+						editable="true"
+						layout="ResponsiveGridLayout"
+						labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+						columnsXL="4" columnsL="3" columnsM="2"
+						adjustLabelSpan="false"
+						singleContainerFullSize="false">
+
+						<core:Title text="CIT Fields"/>
+
+						<Label text="Order Processor" required="true"/>
+						<Input id="orderProcessorInput"/>
+
+						<Label text="Consumption Date Time" required="true"/>
+						<DateTimePicker id="consumptionDateTimeInput"/>
+
+						<Label text="Product Code" required="true"/>
+						<Input id="productCodeInput" showValueHelp="true" valueHelpRequest="onProductCodeVH"/>
+
+						<Label text="Ordered Quantity" required="true"/>
+						<Input id="orderedQtyInput" type="Number"/>
+
+						<Label text="Volume (M3)"/>
+						<Input id="volumeInput" type="Number"/>
+
+						<Label text="Gross weight (KG)" required="true"/>
+						<Input id="grossWeightInput" type="Number"/>
+
+						<Label text="Net weight (KG)" required="true"/>
+						<Input id="netWeightInput" type="Number"/>
+
+						<Label text="Height (CM)" required="true"/>
+						<Input id="heightInput" type="Number"/>
+
+						<Label text="Width (CM)" required="true"/>
+						<Input id="widthInput" type="Number"/>
+
+						<Label text="Length (CM)" required="true"/>
+						<Input id="lengthInput" type="Number"/>
+
+						<Label text="Sender Country" required="true"/>
+						<Input id="senderCountryInput" showValueHelp="true" valueHelpRequest="onCountryVH"/>
+
+						<Label text="Sender Postal Code" required="true"/>
+						<Input id="senderPostalInput"/>
+
+						<Label text="Receiver Country" required="true"/>
+						<Input id="receiverCountryInput" showValueHelp="true" valueHelpRequest="onCountryVH"/>
+
+						<Label text="Receiver Postal Code" required="true"/>
+						<Input id="receiverPostalInput"/>
+
+						<Label text="Item Type"/>
+						<Input id="itemTypeInput"/>
+
+						<Label text="Addon Product Code"/>
+						<Input id="addonProductCodeInput" showValueHelp="true" valueHelpRequest="onProductCodeVH"/>
+
+						<Label text="Include all Addons"/>
+						<CheckBox id="includeAllAddonsCB"/>
+
+						<Label text="Surcharge Product Code"/>
+						<Input id="surchargeProductCodeInput" showValueHelp="true" valueHelpRequest="onProductCodeVH"/>
+
+						<Label text="Include all Surcharges"/>
+						<CheckBox id="includeAllSurchargesCB"/>
+
+						<Label text="Contract No."/>
+						<Input id="contractNoInput" showValueHelp="true" valueHelpRequest="onContractVH"/>
+
+						<Label text="Collective Pricing"/>
+						<Input id="collectivePricingInput" showValueHelp="true" valueHelpRequest="onCollectivePricingVH"/>
+
+					</form:SimpleForm>
+
+					<HBox justifyContent="End" class="sapUiTinyMarginTop sapUiSmallMarginBottom sapUiSmallMarginEnd">
+						<Button text="Simulate" type="Emphasized" press="onSimulate" class="sapUiTinyMarginEnd"/>
+						<Button text="Clear" press="onClear"/>
+					</HBox>
+
+				</VBox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content>
+			<VBox>
+				<Table id="resultsTable" items="{simModel>/results}">
+					<columns>
+						<Column><Text text="Product Code"/></Column>
+						<Column><Text text="Simulated Cost"/></Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{simModel>ProductCode}"/>
+								<Text text="{simModel>SimulatedCost}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</f:content>
+
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,48 @@
+/* 5-column responsive filter grid, matching FilterBar's default layout */
+.formGrid5Col {
+	gap: 1rem 1rem;
+	row-gap: 1.25rem;
+}
+
+.formGrid5Col .formCell {
+	/* 5 columns: 100% / 5 = 20%, minus gap compensation */
+	flex: 0 0 calc(20% - 0.8rem);
+	max-width: calc(20% - 0.8rem);
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+/* Reserve consistent height for labels (up to 2 lines) so every
+   input in the same row starts at the same vertical position,
+   even when some labels wrap and others don't. */
+.formGrid5Col .formCell > .sapMLabel {
+	display: block;
+	min-height: 2.5em;
+	white-space: normal;
+	word-break: break-word;
+	margin-bottom: 0.25rem;
+}
+
+.formGrid5Col .formCell .sapMInputBase,
+.formGrid5Col .formCell .sapMCb {
+	width: 100%;
+}
+
+/* Tablet: drop to 3 columns */
+@media (max-width: 1024px) {
+	.formGrid5Col .formCell {
+		flex: 0 0 calc(33.333% - 0.667rem);
+		max-width: calc(33.333% - 0.667rem);
+	}
+}
+
+/* Phone: single column */
+@media (max-width: 600px) {
+	.formGrid5Col .formCell {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	.formGrid5Col .formCell > .sapMLabel {
+		min-height: 0;
+	}
+}

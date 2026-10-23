@@ -1,0 +1,501 @@
+<mvc:View
+	controllerName="project1.controller.View5"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:table="sap.ui.table"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+    xmlns:vm="sap.ui.fl.variants">
+
+	<f:DynamicPage
+		id="dynamicPageId"
+		headerExpanded="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false">
+
+		<!-- ===== Title bar: "Standard" + variant arrow + Bulk Simulation button ===== -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<vm:VariantManagement id="variants" for="filterbar, table"/>
+				</f:heading>
+
+				<f:actions>
+					<Button icon="sap-icon://simulate" text="{i18n>bulkSimulation}" type="Emphasized" press="onBulkSimulation"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- ===== Header: the FilterBar goes here — this is what collapses/pins ===== -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+				<VBox>
+				<fb:FilterBar
+                    id="filterbar"
+					useToolbar="false"
+					showGoOnFB="true"
+					filterBarExpanded="false"
+                    showFilterConfiguration="true"
+					search="onSimulate"
+					reset="onClear"
+                    showClearOnFB="true"
+					>
+
+					<fb:filterGroupItems>
+
+						<fb:FilterGroupItem groupName="Group1" name="dateOrigin" label="{i18n>dateOriginLabel}" visibleInFilterBar="true">
+							<fb:control>
+								<DatePicker id="dateOrigin" required="true"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="qtyConsumed" label="{i18n>qtyConsumedLabel}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="qtyConsumedInput" showValueHelp="true" valueHelpRequest="onQtyConsumedVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="unitMeasure" label="{i18n>unitMeasureLabel}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="unitMeasureInput" showValueHelp="true" valueHelpRequest="onUnitMeasureVH" type="Number"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="salesOrg" label="{i18n>salesOrganization}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="salesOrgInput" required="true" showValueHelp="true" valueHelpRequest="onSalesOrgVH" type="Number"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="customer" label="{i18n_de>customer}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="customerInput" required="true" showValueHelp="true" valueHelpRequest="onCustomerVH" />
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="productRate" label="{i18n>productRating}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="productRateInput" type="Number"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="manualMaterial" label="{i18n>manualMaterial}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="manualMaterialInput" showValueHelp="true" valueHelpRequest="onManualMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="productCode" label="{i18n>productCode}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="productCodeInput" required="true" type="Number"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode1" label="{i18n>productSubCode1}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode1Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode2" label="{i18n>productSubCode2}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode2Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode3" label="{i18n>productSubCode3}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode3Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode4" label="{i18n>productSubCode4}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode4Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode5" label="{i18n>productSubCode5}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode5Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode6" label="{i18n>productSubCode6}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode6Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode7" label="{i18n>productSubCode7}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode7Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode8" label="{i18n>productSubCode8}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode8Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode9" label="{i18n>productSubCode9}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode9Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode10" label="{i18n>productSubCode10}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode10Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode11" label="{i18n>productSubCode11}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode11Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="subCode12" label="{i18n>productSubCode12}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode12Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode13" label="{i18n>productSubCode13}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode13Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode14" label="{i18n>productSubCode14}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode14Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode15" label="{i18n>productSubCode15}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode15Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode16" label="{i18n>productSubCode16}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode16Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode17" label="{i18n>productSubCode17}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode17Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode18" label="{i18n>productSubCode18}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode18Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode19" label="{i18n>productSubCode19}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode19Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subCode20" label="{i18n>productSubCode20}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subCode20Input" showValueHelp="true" valueHelpRequest="onSubCode1VH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial" label="{i18n>productMaterial}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterialInput" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial1" label="{i18n>productSubMaterial1}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial1Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial2" label="{i18n>productSubMaterial2}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial2Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial3" label="{i18n>productSubMaterial3}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial3Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial4" label="{i18n>productSubMaterial4}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial4Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial5" label="{i18n>productSubMaterial5}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial5Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial6" label="{i18n>productSubMaterial6}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial6Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial7" label="{i18n>productSubMaterial7}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial7Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial8" label="{i18n>productSubMaterial8}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial8Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial9" label="{i18n>productSubMaterial9}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial9Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial10" label="{i18n>productSubMaterial10}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial10Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial11" label="{i18n>productSubMaterial11}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial11Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial12" label="{i18n>productSubMaterial12}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial12Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial13" label="{i18n>productSubMaterial13}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial13Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial14" label="{i18n>productSubMaterial14}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial14Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial15" label="{i18n>productSubMaterial15}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial15Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial16" label="{i18n>productSubMaterial16}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial16Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial17" label="{i18n>productSubMaterial17}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial17Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial18" label="{i18n>productSubMaterial18}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial18Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial19" label="{i18n>productSubMaterial19}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial19Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="subMaterial20" label="{i18n>productSubMaterial20}" visibleInFilterBar="false">
+							<fb:control>
+								<Input id="subMaterial20Input" showValueHelp="true" valueHelpRequest="onSubMaterialVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="senderCountry" label="{i18n>senderCountry}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="senderCountryInput" required="true" showValueHelp="true" valueHelpRequest="senderCountryVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="senderPostCountry" label="{i18n>senderPostCode}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="senderPostCodeInput" required="true" showValueHelp="true" valueHelpRequest="senderPostCodeVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="receiverCountry" label="{i18n>receiverCountry}" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="receiverCountryInput" required="true" showValueHelp="true" valueHelpRequest="receiverCountryVH"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="receiverPostCountry" label="{i18n>receiverPostCode}" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="receiverPostCodeInput" required="true" showValueHelp="true" valueHelpRequest="receiverPostCodeVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="length" label="{i18n>length}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="lengthInput" showValueHelp="true" valueHelpRequest="lengthVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="lengthUOM" label="{i18n>lengthUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="lengthUOMInput" showValueHelp="true" valueHelpRequest="lengthUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="width" label="{i18n>width}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="widthInput" showValueHelp="true" valueHelpRequest="widthVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="widthUOM" label="{i18n>widthUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="widthUOMInput" showValueHelp="true" valueHelpRequest="widthUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="height" label="{i18n>height}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="heightInput" showValueHelp="true" valueHelpRequest="heightVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="heightUOM" label="{i18n>heightUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="heightUOMInput" showValueHelp="true" valueHelpRequest="heightUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="volume" label="{i18n>volume}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="volumeInput" showValueHelp="true" valueHelpRequest="volumeVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="volumeUOM" label="{i18n>volumeUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="volumeUOMInput" showValueHelp="true" valueHelpRequest="volumeUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="measure" label="{i18n>measure}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="measureInput" showValueHelp="true" valueHelpRequest="measureVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="measureUOM" label="{i18n>measureUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="measureUOMInput" showValueHelp="true" valueHelpRequest="measureUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="grossWeight" label="{i18n>grossWeight}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="grossWeightInput" showValueHelp="true" valueHelpRequest="grossWeightVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="grossWeightUOM" label="{i18n>grossWeightUOM}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="grossWeightUOMInput" showValueHelp="true" valueHelpRequest="grossWeightUOMVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="itemID" label="{i18n>itemID}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="itemIDInput" showValueHelp="true" valueHelpRequest="itemIDVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="customerRef" label="{i18n>customerReference}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="customerRefInput" showValueHelp="true" valueHelpRequest="customerRefVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem groupName="Group1" name="itemType" label="{i18n>itemType}" visibleInFilterBar="false">
+                            <fb:control>
+                                <Input id="itemTypeInput" showValueHelp="true" valueHelpRequest="itemTypeVH"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="Group1" name="count" label="{i18n>count}" visibleInFilterBar="true">
+							<fb:control>
+							<HBox>
+								<Input id="itemCount" type="Number" placeholder="{i18n>countPlaceholder}" value="100" width="100px"/>
+							</HBox>
+							</fb:control>
+						</fb:FilterGroupItem>
+
+					</fb:filterGroupItems>
+                
+				</fb:FilterBar>
+			
+				</VBox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content>
+				<table:Table
+					id="productTable"
+					rows="{/Products}"
+					width="100%"
+					selectionMode="None"
+					alternateRowColors="true"
+					noData="{i18n>noResults}">
+					<table:columns>
+						<table:Column>
+							<Label text="{i18n>productId}"/>
+							<table:template>
+								<Text text="{ProductID}"/>
+							</table:template>
+						</table:Column>
+						<table:Column>
+							<Label text="{i18n>productName}"/>
+							<table:template>
+								<Text text="{ProductName}"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:Table>
+	
+		</f:content>
+		
+	</f:DynamicPage>
+</mvc:View>
+

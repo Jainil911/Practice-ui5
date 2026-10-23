@@ -1,0 +1,94 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Table  id="rfqList" items="{/ProductDetails}"  sticky="ColumnHeaders,HeaderToolbar" growing="true" growingScrollToLoad="true" growingThreshold="100" class="sapUiTinyMarginBottom">
+            <columns>
+                <Column hAlign="Center"  mergeDuplicates="true" mergeFunctionName="getCustomText" width="10rem">
+                    <Label design="Bold" text="Products" wrapping="true" />
+                </Column>
+                <Column hAlign="Center"  width="10rem">
+                    <Label design="Bold" text="Non RFQ" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" width="10rem" visible="{= ${ColSettingsModel>/RFQ_Date}}">
+                    <Label design="Bold" text="RFQ Date" wrapping="true"  />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Currency}}" minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Currency" wrapping="true" />
+                </Column>
+                <Column hAlign="Center"   width="10rem" visible="{= ${ColSettingsModel>/Buyer_Name}}">
+                    <Label design="Bold" text="Buyer Name" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" width="10rem" visible="{= ${ColSettingsModel>/Bidder_reference_No}}">
+                    <Label design="Bold" text="Bidder reference No" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Indent_No}}"  minScreenWidth="700px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Indent No." wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Indent_Creator}}"  minScreenWidth="700px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Indent Creator" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Bidder}}" minScreenWidth="1000px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Bidder" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Bidder_Name}}"  minScreenWidth="1000px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Bidder Name" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Submission_deadline}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Submission Deadline" wrapping="true" />
+                </Column>
+
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/CommercialEvaluationDate}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Commercial Evaluation Date" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Commercial_Evaluator}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Commercial Evaluator" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/TechnicalEvaluationDate}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Technical Evaluation Date" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Technical_Evaluator}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Technical Evaluator" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/TechnicalApprovalName}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Technical Approval Name" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/TechnicalApprovalDate}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Technical Approval Date" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/TechnoCommercialApprovername}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Techno - Commercial Approver name" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/TechnoCommercialApproverDate}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="Techno - Commercial Approver Date" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Level2ApproverName}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="2nd Level Approver Name" wrapping="true" />
+                </Column>
+                <Column hAlign="Center" visible="{= ${ColSettingsModel>/Level2ApproverDate}}"  minScreenWidth="900px" demandPopin="true" popinDisplay="Inline" width="10rem">
+                    <Label design="Bold" text="2nd Level Approval date" wrapping="true" />
+                </Column>
+                </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <!-- <Link text="{UIModel>Common_RFQ}"  emphasized="true" press="onPressCommonRfq"/>  -->
+                        <Link text="{ path: 'ProductName', formatter: '.formatMergeCell'}"/>
+                        <Text text="{Category}"></Text>
+                        <Text text="{Price}"></Text>
+                        <Text text="{UIModel>IndentId}"></Text>
+                        <Text text="{UIModel>Buyer}"></Text>
+                        <Text text="{UIModel>InviteBidder}"></Text>
+                        <Text text="{UIModel>Bidder_Name}"></Text>
+                        <Text text="{ path : 'UIModel>QuotationDeadline' , formatter:'formatter.formatDate'}"></Text>
+                        <!-- <Text text="{UIModel>Po_No}"></Text> -->
+
+                        <Text text="{path : 'UIModel>CommercialDate' , formatter:'formatter.formatDate' }"></Text>
+                        <Text text="{UIModel>CommEvalName}"></Text>
+                        <Text text="{path : 'UIModel>TecevaluationDate', formatter:'formatter.formatDate'}"></Text>
+                        </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

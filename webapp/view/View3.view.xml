@@ -1,0 +1,156 @@
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="project1.controller.View3"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+
+    <Page id="travelRequests" title="Create Travel Request">
+        <content>
+
+            <!-- Form Panel -->
+            <Panel
+                headerText="Create Sales Order"
+                class="sapUiResponsiveMargin">
+
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="12"
+                    labelSpanL="12"
+                    labelSpanM="12"
+                    labelSpanS="12">
+
+                    <form:content>
+                        <Label text="Customer ID"/>
+                        <Input value="{soModel>/customerID}"/>
+
+                        <Label text="Customer"/>
+                        <Input value="{soModel>/customer}"/>
+
+                        <Label text="Sales Organization"/>
+                        <Input value="{soModel>/salesOrg}"/>
+
+                        <Label text="Distribution Channel"/>
+                        <Input value="{soModel>/distrChannel}"/>
+
+                        <Label text="Document Date"/>
+                        <DatePicker value="{soModel>/docDate}"/>
+
+                        <Label text="Requested Delivery Date"/>
+                        <DatePicker value="{soModel>/deliveryDate}"/>
+
+                        <Label text="Material"/>
+                        <Input value="{soModel>/material}"/>
+
+                        <Label text="Description"/>
+                        <Input value="{soModel>/description}"/>
+
+                        <Label text="Order Quantity"/>
+                        <Input value="{soModel>/quantity}" type="Number"/>
+
+                        <Label text="Net Price"/>
+                        <Input value="{soModel>/netPrice}" type="Number"/>
+
+                        <Label text="Delivery Address"/>
+                        <Input value="{soModel>/deliveryAddress}"/>
+                    </form:content>
+                </form:SimpleForm>
+
+                <HBox class="sapUiSmallMarginTop">
+                    <Button
+                        text="Save"
+                        type="Emphasized"
+                        press="onSave"/>
+
+                    <Button
+                        text="Clear"
+                        class="sapUiTinyMarginBegin"
+                        press="onClear"/>
+                </HBox>
+            </Panel>
+
+            <l:Splitter height="600px" class="sapUiResponsiveMargin">
+
+                <VBox width="100%">
+                    <layoutData>
+                        <l:SplitterLayoutData size="30%"/>
+                    </layoutData>
+
+                    <Toolbar>
+                        <Title text="Order List"/>
+                    </Toolbar>
+
+                    <List
+                        class="sapUiTinyMargin"
+                        items="{soModel>/recentOrders}"
+                        headerText="Recent Orders"
+                        >
+
+                        <DisplayListItem
+                            label="{soModel>customer}"
+                            value="{soModel>material}"
+                        />
+
+                    </List>
+                </VBox>
+
+                <VBox width="100%">
+                    <layoutData>
+                        <l:SplitterLayoutData size="70%"/>
+                    </layoutData>
+
+                    <Toolbar>
+                        <Title text="Sales Orders"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://add" press="onAddOrder"/>
+                    </Toolbar>
+
+                    <ScrollContainer>
+
+                        <Table
+                            class="sapUiTinyMargin"
+                            items="{soModel>/salesOrders}"
+                            mode="Delete"
+                            delete="onDeleteOrder">
+
+                            <columns>
+                                <Column width="7rem"><Text text="Customer ID"/></Column>
+                                <Column width="7rem"><Text text="Customer"/></Column>
+                                <Column width="7rem"><Text text="Sales Org"/></Column>
+                                <Column width="7rem"><Text text="Distr. Channel"/></Column>
+                                <Column width="7rem"><Text text="Doc Date"/></Column>
+                                <Column width="7rem"><Text text="Delivery Date"/></Column>
+                                <Column width="7rem"><Text text="Material"/></Column>
+                                <Column width="7rem"><Text text="Description"/></Column>
+                                <Column width="7rem"><Text text="Quantity"/></Column>
+                                <Column width="7rem"><Text text="Net Price"/></Column>
+                                <Column width="7rem"><Text text="Delivery Address"/></Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{soModel>customerID}"/>
+                                        <Text text="{soModel>customer}"/>
+                                        <Text text="{soModel>salesOrg}"/>
+                                        <Text text="{soModel>distrChannel}"/>
+                                        <Text text="{soModel>docDate}"/>
+                                        <Text text="{soModel>deliveryDate}"/>
+                                        <Text text="{soModel>material}"/>
+                                        <Text text="{soModel>description}"/>
+                                        <Text text="{soModel>quantity}"/>
+                                        <Text text="{soModel>netPrice}"/>
+                                        <Text text="{soModel>deliveryAddress}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </VBox>
+            </l:Splitter>
+        </content>
+    </Page>
+</mvc:View>
